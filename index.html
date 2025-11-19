@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SwiftDMG</title>
+
+<!-- Inter font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+        background: #ffffff;
+        overflow: hidden;
+    }
+
+    /* Moving blurred orange dots */
+    .dot {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background: rgba(255, 140, 0, 0.45);
+        filter: blur(60px);
+        border-radius: 50%;
+        animation: move 12s infinite ease-in-out;
+    }
+
+    @keyframes move {
+        0% { transform: translate(0, 0); }
+        50% { transform: translate(200px, 150px); }
+        100% { transform: translate(0, 0); }
+    }
+
+    /* Faster, smaller, more saturated cursor glow */
+    #cursorGlow {
+        position: fixed;
+        width: 120px;       /* smaller */
+        height: 120px;
+        background: rgba(255, 106, 0, 0.8); /* more saturated + stronger */
+        filter: blur(50px);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: 0.02s linear; /* MUCH faster follow */
+        z-index: 5;
+    }
+
+    /* Main content */
+    .container {
+        position: relative;
+        text-align: center;
+        padding-top: 120px;
+        z-index: 10;
+    }
+
+    h1 {
+        font-size: 50px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: #000;
+    }
+
+    /* Text block instead of a textarea */
+    .textblock {
+        width: 60%;
+        margin: 0 auto;
+        padding: 20px;
+        font-size: 17px;
+        line-height: 1.5;
+        color: #333;
+        background: #f7f7f7;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+        font-family: 'Inter', sans-serif;
+    }
+
+    button {
+        margin: 20px 10px;
+        padding: 13px 26px;
+        font-size: 17px;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        background: #ff9100;
+        color: #fff;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #ff6700;
+    }
+</style>
+</head>
+<body>
+
+<!-- Moving orange blur dots -->
+<div class="dot" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
+<div class="dot" style="top: 70%; left: 60%; animation-delay: 2s;"></div>
+<div class="dot" style="top: 40%; left: 80%; animation-delay: 4s;"></div>
+
+<!-- Cursor glow -->
+<div id="cursorGlow"></div>
+
+<!-- Main UI -->
+<div class="container">
+    <h1>SwiftDMG</h1>
+
+    <div class="textblock">
+        SwiftDMG - a better way to mount DMG's on MacBook.
+    </div>
+
+    <br>
+
+    <a href="https://raw.githubusercontent.com/saudmisk21/SwiftDMG/refs/heads/main/LICENSE" target="_blank">
+        <button>License</button>
+    </a>
+
+    <button id="downloadBtn">Download</button>
+</div>
+
+<script>
+    // Faster cursor glow movement
+    const glow = document.getElementById("cursorGlow");
+    document.addEventListener("mousemove", (e) => {
+        glow.style.left = `${e.clientX}px`;
+        glow.style.top = `${e.clientY}px`;
+    });
+
+    // Download button placeholder action
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+        alert("Download not available yet.");
+    });
+</script>
+
+</body>
+</html>
